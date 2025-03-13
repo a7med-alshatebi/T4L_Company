@@ -22,16 +22,17 @@ menuIcon.onclick = () => {
         };
 
         // Function to scroll to the top of the page smoothly
-        /*window.goToTop = function() {
+        window.goToTop = function() {
             window.scrollTo({
                 top: 0,
                 behavior: 'smooth'
             });
         };
     }
-*/
 
+/*
 function goToTop() {
   document.body.scrollTop = 0; // For Safari
   document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE, and Opera
 }
+*/
