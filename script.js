@@ -7,6 +7,9 @@ menuIcon.onclick = () => {
 };
 
 
+
+//scroll to top button//
+
  var toTopButton = document.getElementById("to-top-button");
 
     // Check if the button exists
