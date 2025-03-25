@@ -94,3 +94,81 @@ window.onscroll = function() {
 function goToTop() {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
+
+////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+// Weather API configuration
+const weatherAPIKey = 'YOUR_OPENWEATHERMAP_API_KEY'; // Replace with your API key
+const weatherUnits = 'metric'; // or 'imperial' for Fahrenheit
+
+async function fetchWeather(latitude, longitude) {
+  try {
+    const response = await fetch(
+      `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=${weatherUnits}&appid=${weatherAPIKey}`
+    );
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Error fetching weather:', error);
+    return null;
+  }
+}
+
+function updateWeatherUI(weatherData) {
+  if (!weatherData) {
+    document.getElementById('location').textContent = 'Weather data unavailable';
+    return;
+  }
+
+  // Update location
+  document.getElementById('location').textContent = `${weatherData.name}, ${weatherData.sys.country}`;
+  
+  // Update date
+  const now = new Date();
+  document.getElementById('date').textContent = now.toLocaleDateString('en-US', { 
+    weekday: 'long', 
+    year: 'numeric', 
+    month: 'long', 
+    day: 'numeric' 
+  });
+  
+  // Update temperature and weather
+  document.getElementById('temperature').textContent = `${Math.round(weatherData.main.temp)}°`;
+  document.getElementById('weather-description').textContent = weatherData.weather[0].description;
+  document.getElementById('humidity').textContent = weatherData.main.humidity;
+  document.getElementById('wind').textContent = Math.round(weatherData.wind.speed * 3.6); // Convert m/s to km/h
+  document.getElementById('feels-like').textContent = `${Math.round(weatherData.main.feels_like)}°`;
+  document.getElementById('temp-min').textContent = `${Math.round(weatherData.main.temp_min)}°`;
+  document.getElementById('temp-max').textContent = `${Math.round(weatherData.main.temp_max)}°`;
+  
+  // Update weather icon
+  const iconCode = weatherData.weather[0].icon;
+  document.getElementById('weather-icon').innerHTML = 
+    `<img src="https://openweathermap.org/img/wn/${iconCode}@2x.png" alt="${weatherData.weather[0].description}" class="w-16 h-16">`;
+}
+
+function getLocationAndWeather() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(
+      async (position) => {
+        const { latitude, longitude } = position.coords;
+        const weatherData = await fetchWeather(latitude, longitude);
+        updateWeatherUI(weatherData);
+      },
+      (error) => {
+        console.error('Geolocation error:', error);
+        // Fallback to a default location if geolocation is denied
+        fetchWeather(40.7128, -74.0060).then(updateWeatherUI); // Default to New York
+      }
+    );
+  } else {
+    console.log('Geolocation is not supported by this browser.');
+    // Fallback to a default location
+    fetchWeather(40.7128, -74.0060).then(updateWeatherUI); // Default to New York
+  }
+}
+
+// Initialize weather when page loads
+document.addEventListener('DOMContentLoaded', getLocationAndWeather);
