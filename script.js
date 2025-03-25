@@ -84,7 +84,7 @@ if (menuButton && mobileMenu) {
 const toTopButton = document.getElementById('to-top-button');
 
 window.onscroll = function() {
-  if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+  if (document.body.scrollTop > 500 || document.documentElement.scrollTop > 500) {
     toTopButton.classList.remove('hidden');
   } else {
     toTopButton.classList.add('hidden');
