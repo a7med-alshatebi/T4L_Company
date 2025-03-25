@@ -40,22 +40,22 @@ function goToTop() {
 }
 */
 
-// Check the saved theme preference on page load
-document.addEventListener("DOMContentLoaded", () => {
-    const savedTheme = localStorage.getItem("theme");
-    if (savedTheme) {
-      document.documentElement.classList.add(savedTheme);
-    }
-  });
 
-  // Toggle dark mode and save the preference
-  function toggleDarkMode() {
-    const htmlElement = document.documentElement;
-    if (htmlElement.classList.contains("dark")) {
-      htmlElement.classList.remove("dark");
-      localStorage.setItem("theme", ""); // Save light mode
-    } else {
-      htmlElement.classList.add("dark");
-      localStorage.setItem("theme", "dark"); // Save dark mode
-    }
+
+// Apply the saved theme immediately on script load
+const savedTheme = localStorage.getItem("theme");
+if (savedTheme) {
+  document.documentElement.classList.add(savedTheme);
+}
+
+// Toggle dark mode and save the preference
+function toggleDarkMode() {
+  const htmlElement = document.documentElement;
+  if (htmlElement.classList.contains("dark")) {
+    htmlElement.classList.remove("dark");
+    localStorage.setItem("theme", ""); // Save light mode
+  } else {
+    htmlElement.classList.add("dark");
+    localStorage.setItem("theme", "dark"); // Save dark mode
   }
+}
