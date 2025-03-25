@@ -1,4 +1,4 @@
-let menuIcon = document.querySelector('#menu-icon');
+/*let menuIcon = document.querySelector('#menu-icon');
 let mobileMenu = document.querySelector('#mobile-menu');
 
 menuIcon.onclick = () => {
@@ -42,23 +42,55 @@ function goToTop() {
 
 
 
+// Check for saved 'darkMode' in localStorage
+const darkMode = localStorage.getItem('darkMode');
 
+// If the user previously enabled dark mode, enable it
+if (darkMode === 'enabled') {
+  document.documentElement.classList.add('dark');
+  localStorage.setItem('darkMode', 'enabled');
+} else if (darkMode === null) {
+  // Optional: Set default to light mode if no preference exists
+  localStorage.setItem('darkMode', 'disabled');
+}
 
-  // Apply the saved theme immediately on page load
-  const savedTheme = localStorage.getItem("theme");
-  if (savedTheme === "dark") {
-    document.documentElement.classList.add("dark");
-  }
-
-
-  // Toggle dark mode and save the preference
+// Toggle dark mode function
 function toggleDarkMode() {
-    const htmlElement = document.documentElement;
-    if (htmlElement.classList.contains("dark")) {
-      htmlElement.classList.remove("dark");
-      localStorage.setItem("theme", "light"); // Save light mode
-    } else {
-      htmlElement.classList.add("dark");
-      localStorage.setItem("theme", "dark"); // Save dark mode
-    }
+  const isDark = document.documentElement.classList.toggle('dark');
+  if (isDark) {
+    localStorage.setItem('darkMode', 'enabled');
+  } else {
+    localStorage.setItem('darkMode', 'disabled');
   }
+}
+
+// Set up the dark mode toggle button
+const darkModeToggle = document.querySelector('[onclick*="classList.toggle"]');
+if (darkModeToggle) {
+  darkModeToggle.onclick = toggleDarkMode;
+}
+
+// Mobile menu toggle
+const menuButton = document.getElementById('menu-icon');
+const mobileMenu = document.getElementById('mobile-menu');
+
+if (menuButton && mobileMenu) {
+  menuButton.addEventListener('click', () => {
+    mobileMenu.classList.toggle('hidden');
+  });
+}
+
+// Back to top button
+const toTopButton = document.getElementById('to-top-button');
+
+window.onscroll = function() {
+  if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+    toTopButton.classList.remove('hidden');
+  } else {
+    toTopButton.classList.add('hidden');
+  }
+};
+
+function goToTop() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
