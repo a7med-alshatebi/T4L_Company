@@ -100,7 +100,7 @@ function goToTop() {
 
 
 // Weather API configuration
-const weatherAPIKey = 'YOUR_OPENWEATHERMAP_API_KEY'; // Replace with your API key
+const weatherAPIKey = '4b8373b4df6baac2b74b1a5c39ae8336'; // Replace with your API key
 const weatherUnits = 'metric'; // or 'imperial' for Fahrenheit
 
 async function fetchWeather(latitude, longitude) {
