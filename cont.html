@@ -10,6 +10,8 @@
         darkMode: 'class'
       }
     </script>
+    <script src="https://www.google.com/recaptcha/api.js"></script>
+    <div class="g-recaptcha" data-sitekey="YOUR_SITE_KEY"></div>
     <title>Contact-us</title>
   </head>
   <body class="bg-white dark:bg-gray-900 text-gray-900 dark:text-white font-light transition-colors duration-200">
@@ -166,6 +168,43 @@
             </div>
           </section>
 
+          <!--
+          <section class="text-gray-900 dark:text-gray-300 body-font relative">
+            <div class="container px-5 py-24 mx-auto">
+              <div class="flex flex-col text-center w-full mb-12">
+                <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900 dark:text-gray-300">Contact Us</h1>
+                <p class="lg:w-2/3 mx-auto leading-relaxed text-base">We'll get back to you as soon as possible.</p>
+              </div>
+              <form id="contactForm" class="lg:w-1/2 md:w-2/3 mx-auto">
+                <div class="flex flex-wrap -m-2">
+                  <div class="p-2 w-1/2">
+                    <div class="relative">
+                      <label for="name" class="leading-7 text-sm text-gray-900 dark:text-gray-300">Name</label>
+                      <input type="text" id="name" name="name" required class="w-full bg-white dark:bg-gray-900 bg-opacity-50 rounded border border-gray-600 focus:border-gray-400 focus:bg-white focus:ring-2 focus:ring-blue-200 text-base outline-none text-gray-300 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                    </div>
+                  </div>
+                  <div class="p-2 w-1/2">
+                    <div class="relative">
+                      <label for="email" class="leading-7 text-sm text-gray-900 dark:text-gray-300">Email</label>
+                      <input type="email" id="email" name="email" required class="w-full bg-white dark:bg-gray-900 bg-opacity-50 rounded border border-gray-600 focus:border-gray-400 focus:bg-white focus:ring-2 focus:ring-blue-200 text-base outline-none text-gray-300 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                    </div>
+                  </div>
+                  <div class="p-2 w-full">
+                    <div class="relative">
+                      <label for="message" class="leading-7 text-sm text-gray-900 dark:text-gray-300">Message</label>
+                      <textarea id="message" name="message" required class="w-full bg-white dark:bg-gray-900 bg-opacity-50 rounded border border-gray-600 focus:border-gray-400 focus:bg-white focus:ring-2 focus:ring-blue-200 h-32 text-base outline-none text-gray-300 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"></textarea>
+                    </div>
+                  </div>
+                  <div class="p-2 w-full">
+                    <button type="submit" class="flex mx-auto text-gray-900 dark:text-gray-300 bg-blue-500 border-0 py-2 px-8 focus:outline-none hover:bg-blue-600 rounded text-lg">Send</button>
+                  </div>
+                </div>
+              </form>
+              <div id="formMessage" class="hidden text-center mt-4 p-3 rounded max-w-md mx-auto"></div>
+            </div>
+          </section>
+          -->
+
     <footer class="text-gray-400 bg-gray-800 body-font">
         <div class="container px-5 py-24 mx-auto">
           <div class="flex flex-wrap md:text-left text-center order-first">
@@ -279,6 +318,7 @@
     </button>
     
       <script src="script.js"></script>
+      <script src="msg.js"></script>
        
   </body>
 </html>
