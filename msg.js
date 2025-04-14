@@ -1,34 +1,64 @@
-document.getElementById("contactForm").addEventListener("submit", async function (e) {
-  e.preventDefault();
+// Contact Form Submission
+document.addEventListener('DOMContentLoaded', function() {
+  const contactForm = document.getElementById('contactForm');
+  const formMessage = document.getElementById('formMessage');
 
-  const form = e.target;
-  const formData = {
-    name: form.name.value,
-    email: form.email.value,
-    message: form.message.value,
-  };
+  if (contactForm) {
+    contactForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      const submitBtn = contactForm.querySelector('button[type="submit"]');
+      const originalBtnText = submitBtn.textContent;
+      submitBtn.textContent = 'Sending...';
+      submitBtn.disabled = true;
 
-  const responseElement = document.getElementById("formMessage");
+      try {
+        const formData = new FormData(contactForm);
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbyxUSWrWHruO5dwgHpIZZf3Qf6bVKT6c6nAMAAad5BvduMRdo2pGxRGpAMyhKsXJjZ6/exec'; // Replace with your web app URL
+        
+        const response = await fetch(scriptURL, {
+          method: 'POST',
+          body: formData
+        });
 
-  try {
-    const response = await fetch("https://script.google.com/macros/s/AKfycbyxUSWrWHruO5dwgHpIZZf3Qf6bVKT6c6nAMAAad5BvduMRdo2pGxRGpAMyhKsXJjZ6/exec", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formData),
+        const result = await response.json();
+        
+        if (result.result === 'success') {
+          formMessage.textContent = 'Message sent successfully!';
+          formMessage.className = 'bg-green-100 text-green-700 text-center mt-4 p-3 rounded max-w-md mx-auto';
+          formMessage.classList.remove('hidden');
+          contactForm.reset();
+        } else {
+          throw new Error(result.error || 'Failed to send message');
+        }
+      } catch (error) {
+        console.error('Error:', error);
+        formMessage.textContent = 'Error sending message. Please try again.';
+        formMessage.className = 'bg-red-100 text-red-700 text-center mt-4 p-3 rounded max-w-md mx-auto';
+        formMessage.classList.remove('hidden');
+      } finally {
+        submitBtn.textContent = originalBtnText;
+        submitBtn.disabled = false;
+        
+        // Hide message after 5 seconds
+        setTimeout(() => {
+          formMessage.classList.add('hidden');
+        }, 5000);
+      }
     });
-
-    const result = await response.json();
-    if (result.status === "success") {
-      responseElement.textContent = "Message sent successfully!";
-      responseElement.classList.add("text-green-500");
-      form.reset();
-    } else {
-      throw new Error("Failed to send message.");
-    }
-  } catch (error) {
-    responseElement.textContent = "An error occurred. Please try again.";
-    responseElement.classList.add("text-red-500");
   }
 });
+
+
+/*
+function doPost(e) {
+  const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("Responses");
+  const data = JSON.parse(e.postData.contents);
+
+  // Append the form data to the sheet
+  sheet.appendRow([data.name, data.email, data.message, new Date()]);
+
+  // Return a success response
+  return ContentService.createTextOutput(JSON.stringify({ status: "success" })).setMimeType(ContentService.MimeType.JSON);
+}
+*/
