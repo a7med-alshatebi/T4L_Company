@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function() {
             method: 'POST',
             body: formData
           });
-  
+    
           const result = await response.json();
           
           if (result.result === 'success') {
