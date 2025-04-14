@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
       try {
         const formData = new FormData(contactForm);
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbyxUSWrWHruO5dwgHpIZZf3Qf6bVKT6c6nAMAAad5BvduMRdo2pGxRGpAMyhKsXJjZ6/exec'; // Replace with your web app URL
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbzO8DG_5JjHsy9QRXUW6phUgwCeV-AmFDBR_T5O3-Q/dev'; // Replace with your web app URL
 
         const response = await fetch(scriptURL, {
           method: 'POST',
@@ -47,6 +47,8 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 });
+
+
 
 
 const response = await fetch(scriptURL, {
