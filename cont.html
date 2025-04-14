@@ -118,31 +118,43 @@
                 <div class="flex flex-wrap -m-2">
                   <div class="p-2 w-1/2">
                     <div class="relative">
-                      <label for="name" class="leading-7 text-sm text-gray-900 dark:text-gray-300">Name</label>
-                      <input type="text" id="name" name="name" required class="w-full bg-white dark:bg-gray-900 bg-opacity-50 rounded border border-gray-600 focus:border-gray-400 focus:bg-white focus:ring-2 focus:ring-blue-200 text-base outline-none text-gray-300 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                      <label for="name" class="leading-7 text-sm text-gray-900 dark:text-gray-300">Name*</label>
+                      <input type="text" id="name" name="name" required 
+                             class="w-full bg-white dark:bg-gray-900 rounded border border-gray-600 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 text-base outline-none text-gray-900 dark:text-gray-300 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
                     </div>
                   </div>
                   <div class="p-2 w-1/2">
                     <div class="relative">
-                      <label for="email" class="leading-7 text-sm text-gray-900 dark:text-gray-300">Email</label>
-                      <input type="email" id="email" name="email" required class="w-full bg-white dark:bg-gray-900 bg-opacity-50 rounded border border-gray-600 focus:border-gray-400 focus:bg-white focus:ring-2 focus:ring-blue-200 text-base outline-none text-gray-300 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                      <label for="email" class="leading-7 text-sm text-gray-900 dark:text-gray-300">Email*</label>
+                      <input type="email" id="email" name="email" required 
+                             class="w-full bg-white dark:bg-gray-900 rounded border border-gray-600 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 text-base outline-none text-gray-900 dark:text-gray-300 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
                     </div>
                   </div>
                   <div class="p-2 w-full">
                     <div class="relative">
-                      <label for="message" class="leading-7 text-sm text-gray-900 dark:text-gray-300">Message</label>
-                      <textarea id="message" name="message" required class="w-full bg-white dark:bg-gray-900 bg-opacity-50 rounded border border-gray-600 focus:border-gray-400 focus:bg-white focus:ring-2 focus:ring-blue-200 h-32 text-base outline-none text-gray-300 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"></textarea>
+                      <label for="message" class="leading-7 text-sm text-gray-900 dark:text-gray-300">Message*</label>
+                      <textarea id="message" name="message" required 
+                                class="w-full bg-white dark:bg-gray-900 rounded border border-gray-600 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 h-32 text-base outline-none text-gray-900 dark:text-gray-300 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"></textarea>
                     </div>
                   </div>
+                  
                   <div class="p-2 w-full">
-                    <button type="submit" class="flex mx-auto text-gray-900 dark:text-gray-300 bg-blue-500 border-0 py-2 px-8 focus:outline-none hover:bg-blue-600 rounded text-lg">Send</button>
+                    <button type="submit" id="submitBtn" 
+                            class="flex mx-auto text-white bg-blue-500 border-0 py-2 px-8 focus:outline-none hover:bg-blue-600 rounded text-lg disabled:opacity-50">
+                      <span id="submitText">Send</span>
+                      <span id="spinner" class="hidden ml-2">
+                        <svg class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                          <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                          <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
+                      </span>
+                    </button>
                   </div>
                 </div>
               </form>
               <div id="formMessage" class="hidden text-center mt-4 p-3 rounded max-w-md mx-auto"></div>
             </div>
           </section>
-          
 
     <footer class="text-gray-400 bg-gray-800 body-font">
         <div class="container px-5 py-24 mx-auto">
